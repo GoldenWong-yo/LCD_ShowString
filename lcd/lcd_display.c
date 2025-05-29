@@ -38,17 +38,14 @@ void Display_Handle(void)
 
 		LCD_Clear();
 
-		LCD_SetCursor(34,0);
-
-		LCD_ShowString("test测试", Lcd_Show_Normal);
-
-		LCD_SetCursor(0,32);
+		LCD_ShowString(34, 0, "test测试", Lcd_Show_Normal);
 
 		switch(LcdShow.CurrShow)
 		{
 			case LCD_TEST_NULL:
 				sprintf(txt, "123test测试中: %03f ", test);
-				LCD_ShowString(txt, Lcd_Show_Normal);
+				LCD_ShowString(0, 32, txt, Lcd_Show_Normal);
+				LCD_AppendString("wwww.github.com", Lcd_Show_Opposite);
 				break;
 			default:
 				break;

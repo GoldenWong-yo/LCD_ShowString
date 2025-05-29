@@ -38,7 +38,7 @@ ST_LCD_CURSOR LCD_GetCursor(void)
 	return whyLCD.Cursor;
 }
 
-void LCD_SetCursor(u16 X, u16 Y)
+static void LCD_SetCursor(u16 X, u16 Y)
 {
 	whyLCD.Cursor.X = X;
 	whyLCD.Cursor.Y = Y;
@@ -163,7 +163,7 @@ static u16 Chinese_TXT_Order(int utf8code)
 	return 0;
 }
 
-void LCD_ShowString(const u8* txt, EN_Lcd_Show_Mode ShowMode)
+void LCD_AppendString(const u8* txt, EN_Lcd_Show_Mode ShowMode)
 {
 	u16 i = 0;
 	int numBytes = 0;
@@ -209,4 +209,9 @@ void LCD_ShowString(const u8* txt, EN_Lcd_Show_Mode ShowMode)
 	}
 }
 
+void LCD_ShowString(u16 X, u16 Y, const u8* txt, EN_Lcd_Show_Mode ShowMode)
+{
+	LCD_SetCursor(X, Y);
 
+	LCD_AppendString(txt, ShowMode);
+}
